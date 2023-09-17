@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./assets/style.css" />
+    <title>Javascript Quiz - Test Your Knowledge!</title>
+
+</head>
+<body class="backgroundBox">
+    
+    <header class>
+        <div class="score">
+            <a href="#">High Scores</a> <!-- Link to the high scores-->
+        </div>
+        <div class="timer" id="timer">
+            <h3 class="timerDec"></h3>
+            <!-- Place timer here to display on top right side of page -->
+        </div>
+    </header>
+  
+  
+    <section class="btnSwitch"> <!--Begin Test Button-->
+        <div class="startTest" id="startTest">
+            <button class="startBtn" id="beginBtn" data-state="show">BEGIN TEST!</button>
+        </div>
+    </section>
+  
+    <!--Body that hosts the heading and buttons  -->
+    <section class="quizHeader">
+        <h1 class="jsqHeader">Javascript Quiz - Test your Knowledge!</h1>
+    </section>
+
+    <section class="questionBox">
+        <div class="question"></div>
+            <h2 id="question">Question will go here and be replaced when the user clicks a button.</h2>
+        </div>
+    </section>
+
+    
+    <div class="allBtns" id="answerBtns">
+        <button id="btn1" class="btn">Question 1</button>
+        <button id="btn2" class="btn">Question 1</button>
+        <button id="btn3" class="btn">Question 1</button>
+        <button id="btn4" class="btn">Question 1</button>
+    </div>
+    </section>
+
+    <section class="correct">
+
+    </section>
+    <footer class="footer">
+        
+    </footer>
+    <script src="./assets/script.js"></script>
+</body>
+</html>
