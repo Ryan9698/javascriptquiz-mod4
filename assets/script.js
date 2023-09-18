@@ -78,9 +78,11 @@ var questions = [
 function renderQuestion() {
     var newQuestion = document.getElementById("question");
     var quizAnswers = document.querySelectorAll(".btn")
-    for (i = 0; i < .children.length; i++) {
-        newQuestion.textContent = questions.question
-        quizAnswers.textContent = questions.answers[index];
+    for (i = 0; i <= questions.length; i++) {
+        console.log("Hello")
+        // newQuestion.textContent = questions.question
+        // for (i = 0; i < answers[i].length; i++);
+        // quizAnswers.textContent = questions.answers[i];
     }
 }
 function nextQuestion() {
@@ -92,16 +94,16 @@ function nextQuestion() {
 
 //Function to check chosen answer with answer in data
 
-function answerCheck(correct) {
+// function answerCheck(correct) {
 
-    if (questions[currentQuestion].correct == ) {
-        score += 1;
-        messageOutput("Correct! You got this!");
-    } else {
-        secondsLeft -= 5;
-        messageOutput("Wrong :( Try again!");
-    }
-};
+//     if (questions[currentQuestion].correct == ) {
+//         score += 1;
+//         messageOutput("Correct! You got this!");
+//     } else {
+//         secondsLeft -= 5;
+//         messageOutput("Wrong :( Try again!");
+//     }
+// };
 //Function that saves data to local storage and projects it onto screen
 
 //Function that hides elements until begin test has been pressed
