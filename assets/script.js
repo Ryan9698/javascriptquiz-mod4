@@ -3,7 +3,7 @@ var score = 0;
 var currentQuestion = 0;
 var startTest = document.querySelector("#beginBtn");
 var newQuestion = document.getElementById("question");
-var answerBtns = document.querySelector("#answerBtns")
+
 // var input1 = questions.answer1;
 // var input2 = questions.answer2;
 // var input3 = questions.answer3;
@@ -78,21 +78,18 @@ var questions = [
 
 function renderQuestion() {
     var newQuestion = document.getElementById("question");
-    var newAnswers = document.querySelectorAll(".btn")
-    for (i = 1; i <= questions.length; i++) {
+    var newAnswers = document.getElementById("answerBtns");
         console.log("Hello")
-        newQuestion.textContent = questions.question[i];
-        for (i = 0; i < answers.length; i++);
-        newAnswers.textContent = questions.answers[i];
-        return;
-    }
-}
-function nextQuestion() {
-    currentQuestion++
-    if (currentQuestion < questions.length) {
-        renderQuestion();
-    }
- }
+        newQuestion.textContent = questions[currentQuestion].question;
+        for (i = 0; i < questions[currentQuestion].answers.length; i++){
+        let btnEl = document.createElement('button');
+        btnEl.setAttribute("class", "btn btn-success bg-gradient btn-lg");
+        btnEl.setAttribute("value", questions[currentQuestion].answers[i]);
+        newAnswers.textContent = questions[currentQuestion].answers[i];
+        newAnswers.append(btnEl);
+        }
+};
+
 
 //Function to check chosen answer with answer in data
 
@@ -127,15 +124,15 @@ function quizTimer() {
         clearInterval(countDown);
        console.log("Timer Finished");
        currentQuestion = questions.length;
-       nextQuestion();
+  
     }
-    renderQuestion();
 }, 1000);
 }
 //High Score
 
 //eventListeners
 startTest.addEventListener("click", quizTimer);
+startTest.addEventListener("click", renderQuestion);
 startTest.addEventListener("click", function (event) {
     var element = event.target;
     if (event.target.matches("button")) {
@@ -143,5 +140,5 @@ startTest.addEventListener("click", function (event) {
         if (state === "show") {
         element.setAttribute("data-state", "hidden");
         }};
-        nextQuestion();
+    
     });
