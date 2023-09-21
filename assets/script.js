@@ -14,7 +14,7 @@ var newQuestion = document.getElementById("question");
 var questions = [
     {
       question: "We use a ____ element to link JavaScript to an HTML file?",
-      answers: ["<src>", "<js>", "<script>", "<java>", "<script>"],
+      answers: ["<src>", "<js>", "<jscript>", "<java>", "<script>"],
       correct: "<script>"
     },
     {
@@ -48,7 +48,7 @@ var questions = [
         correct: 'var rgb = ["red", "blue", "green"];'
     }];
     var questionInput = questions.question;
-    var answers = questions.answer;
+    var answer = questions.answer;
 //     {
 //         question:
 //         answer1:
@@ -85,27 +85,29 @@ function renderQuestion() {
         let btnEl = document.createElement('button');
         btnEl.setAttribute("class", "btn btn-success bg-gradient btn-lg");
         btnEl.setAttribute("value", questions[currentQuestion].answers[i]);
-        newAnswers.textContent = questions[currentQuestion].answers[i];
+        btnEl.textContent = questions[currentQuestion].answers[i];
         newAnswers.append(btnEl);
+        btnEl.addEventListener("click", answerCheck);
         }
 };
 
 
 //Function to check chosen answer with answer in data
 
-// function answerCheck(correct) {
+function answerCheck(btnEl) {
+    var btnEl = document.getElementsByClassName(".btn")
+    if (questions[currentQuestion].correct == btnEl.textContent) {
+        score += 1;
+        console.log("Correct! You got this! Your score is " + score);
+        renderQuestion();
+    } else {
+        secondsLeft -= 5;
+        console.log("Wrong :( Try again!");
+    }
+};
+// Function that saves data to local storage and projects it onto screen
 
-//     if (questions[currentQuestion].correct == ) {
-//         score += 1;
-//         messageOutput("Correct! You got this!");
-//     } else {
-//         secondsLeft -= 5;
-//         messageOutput("Wrong :( Try again!");
-//     }
-// };
-//Function that saves data to local storage and projects it onto screen
-
-//Function that hides elements until begin test has been pressed
+// Function that hides elements until begin test has been pressed
 
 
 //Quiz Answers
@@ -142,3 +144,4 @@ startTest.addEventListener("click", function (event) {
         }};
     
     });
+
