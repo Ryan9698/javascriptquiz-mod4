@@ -1,8 +1,8 @@
-
-header {
-    display: flex;
+ * {
+    font-family: 'Indie Flower', cursive;
 }
 
+/*
 .score {
     width: 100%;
     background-color: black;
@@ -60,7 +60,7 @@ header {
     padding: 10px 0px 10px 0px;
     flex: 1 2 1;
     border-bottom: 2px solid black;
-    text-align: center;
+    text-align: center; */
     /* flex-direction: column;
     flex: 1 2 1;
     font-size: 36px;
@@ -71,7 +71,7 @@ header {
     margin-bottom: 10%;
     border: 2px solid black;
     height: 400px; */
-}
+/* }
 
 .allBtns {
     display: flex;
@@ -126,7 +126,7 @@ header {
     background-color: black;
     height: 80px;
     width: 100%;
-}
+} */
 button[data-state="hidden"] {
     display: none
 };
