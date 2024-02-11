@@ -26,9 +26,9 @@ If you have any questions, you can see my GitHub portfolio at [Ryan9698](https:/
 
 ## Link
 
-![GitHub_Pages](https://ryan9698.github.io/javascriptquiz-mod4/)
+[GitHub_Pages](https://ryan9698.github.io/javascriptquiz-mod4/)
 
 ## Screenshots
 
-[quiz](/assets/quiz.png)
-[score](/assets/score.png)
+![quiz](./assets/quiz.png)
+![score](./assets/score.png)
