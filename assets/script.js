@@ -1,147 +1,156 @@
-var secondsLeft = 60;
-var score = 0;
-var currentQuestion = 0;
-var startTest = document.querySelector("#beginBtn");
-var newQuestion = document.getElementById("question");
+//Initial values for questions, timer, and score
+let currentQuestionIndex = 0;
+let timeLeft = 60;
+let score = 0;
+let timerInterval;
 
-// var input1 = questions.answer1;
-// var input2 = questions.answer2;
-// var input3 = questions.answer3;
-// var input4 = questions.answer4;
+// DOM elements
+const startButton = document.getElementById("beginBtn");
+const questionElement = document.getElementById("question");
+const answerBtns = document.getElementById("answerBtns");
+const timerCount = document.getElementById("timerCount");
+const scoreDisplay = document.getElementById("scoreDisplay");
+const initialsInput = document.getElementById("initialsInput");
+const saveScoreButton = document.getElementById("saveScore");
+const backButton = document.getElementById("backButton");
+const feedbackElement = document.getElementById("feedback");
 
-// Quiz Question and Answer Data
-
-var questions = [
-    {
-      question: "We use a ____ element to link JavaScript to an HTML file?",
-      answers: ["<src>", "<js>", "<jscript>", "<java>", "<script>"],
-      correct: "<script>"
-    },
-    {
-        question: "What is the correct place to insert your <script> tag?",
-        answers: ["At the top of the HTML file", "In the middle of the HTML file", "At the bottom of the HTML file", "It does not matter"],
-        correct: "At the bottom of the HTML file"
-    },
-    {
-        question: "How do you make an alert box?",
-        answers: ["alert('Hello')", "msg('Hello')", "pop('Hello')", "alert.box('Hello')", "alert('Hello')"],
-        correct: "alert('Hello')"
-    },
-    {
-        question: "How do you call the function myQuiz?",
-        answers: ["function myQuiz();", "call function myQuiz();", "myQuiz();", "function call myQuiz();"],
-        correct: "myQuiz();"
-    },
-    {
-        question: "How do you write an 'if' statement?",
-        answers: ["if i = 10", "if i = 10 then", "if {i = 10} then", "if (i = 10)",],
-        correct: "if (i = 10)"
-    },
-    {
-        question: "How do you write a comment in JavaScript?",
-        answers: ["*Comment*", "<!--Comment-->", "// Comment", "!~Comment"],
-        correct: "// Comment"
-    },
-    {
-        question: "How do you write an array in JavaScript?",
-        answers: ["var rgb = red, blue, green;", "var rgb = {red, blue, green};", 'var rgb = {"red", "blue", "green");', 'var rgb = ["red", "blue", "green"];'],
-        correct: 'var rgb = ["red", "blue", "green"];'
-    }];
-    var questionInput = questions.question;
-    var answer = questions.answer;
-//     {
-//         question:
-//         answer1:
-//         answer2:
-//         answer3:
-//         answer4:
-//         correct:
-//     },
-//     {
-//         question:
-//         answer1:
-//         answer2:
-//         answer3:
-//         answer4:
-//         correct:
-//     },
-//     {
-//         question:
-//         answer1:
-//         answer2:
-//         answer3:
-//         answer4:
-//         correct:
-//     },
-
-// ];
-
-function renderQuestion() {
-    var newQuestion = document.getElementById("question");
-    var newAnswers = document.getElementById("answerBtns");
-        console.log("Hello")
-        newQuestion.textContent = questions[currentQuestion].question;
-        for (i = 0; i < questions[currentQuestion].answers.length; i++){
-        let btnEl = document.createElement('button');
-        btnEl.setAttribute("class", "btn btn-success bg-gradient btn-lg");
-        btnEl.setAttribute("value", questions[currentQuestion].answers[i]);
-        btnEl.textContent = questions[currentQuestion].answers[i];
-        newAnswers.append(btnEl);
-        btnEl.addEventListener("click", answerCheck);
-        }
-};
-
-
-//Function to check chosen answer with answer in data
-
-function answerCheck(btnEl) {
-    var btnEl = document.getElementsByClassName(".btn")
-    if (questions[currentQuestion].correct == btnEl.textContent) {
-        score += 1;
-        console.log("Correct! You got this! Your score is " + score);
-        renderQuestion();
-    } else {
-        secondsLeft -= 5;
-        console.log("Wrong :( Try again!");
-    }
-};
-// Function that saves data to local storage and projects it onto screen
-
-// Function that hides elements until begin test has been pressed
-
-
-//Quiz Answers
-
-
-//Timer
-var timerEl = document.querySelector("#timer");
-
-function quizTimer() {
-    timerEl.textContent = secondsLeft
-    var countDown = setInterval(function(){
-    secondsLeft--;
-    timerEl.textContent = "Timer: " + secondsLeft;
-
-    if(secondsLeft <= 0) {
-        clearInterval(countDown);
-       console.log("Timer Finished");
-       currentQuestion = questions.length;
-  
-    }
-}, 1000);
+//Utility functions to make toggling elements easier
+function showElement(element) {
+  element.classList.remove("hidden");
+  element.classList.add("visible");
 }
-//High Score
 
-//eventListeners
-startTest.addEventListener("click", quizTimer);
-startTest.addEventListener("click", renderQuestion);
-startTest.addEventListener("click", function (event) {
-    var element = event.target;
-    if (event.target.matches("button")) {
-        var state = element.getAttribute("data-state");
-        if (state === "show") {
-        element.setAttribute("data-state", "hidden");
-        }};
-    
-    });
+function hideElement(element) {
+  element.classList.remove("visible");
+  element.classList.add("hidden");
+}
 
+//Toggles the display of these elements when the page is loaded.
+function initializeQuiz() {
+  hideElement(questionElement);
+  hideElement(answerBtns);
+  hideElement(timerCount);
+  hideElement(scoreDisplay);
+  hideElement(initialsInput);
+  hideElement(saveScoreButton);
+  hideElement(backButton);
+  hideElement(feedbackElement);
+  showElement(startButton);
+}
+//When the Begin Quiz button is clicked, the button disappears and the elements are displayed and the timer starts.
+//It immediately proceeds to the nextQuestion function to render the first question in the object array.
+function startGame() {
+  currentQuestionIndex = 0;
+  timeLeft = 60;
+  score = 0;
+  timerCount.textContent = `Timer: ${timeLeft}`;
+  scoreDisplay.textContent = ` Current Score: ${score}`;
+  startTimer();
+  nextQuestion();
+  hideElement(startButton);
+  showElement(questionElement);
+  showElement(timerCount);
+  showElement(scoreDisplay);
+}
+//If the quiz is finished, the endGame function is called.
+function nextQuestion() {
+  if (currentQuestionIndex >= quizQuestions.length) {
+    endGame();
+    return;
+  }
+  //Otherwise, it renders the question and styled answer buttons that each check the data inside against the correct
+  //answer based on user input(click).
+  const currentQuestion = quizQuestions[currentQuestionIndex];
+  questionElement.textContent = currentQuestion.question;
+  //Remove data from the html container before rendering new buttons with new data.
+  answerBtns.innerHTML = "";
+  //Creates buttons for each potential answer in the array
+  currentQuestion.answers.forEach((answer) => {
+    const button = document.createElement("button");
+    button.textContent = answer;
+    button.classList.add("btn", "btn-success", "m-2"); //Adding bootstrap classes to generated buttons
+    button.onclick = () => checkAnswer(answer);
+    answerBtns.appendChild(button);
+  });
+}
+//Checks the input click against the correct answer.
+function checkAnswer(answer) {
+  const correct = quizQuestions[currentQuestionIndex].correctAnswer;
+  let isCorrect = answer === correct;
+
+  if (isCorrect) {
+    // If correct, feedback renders correct and adds +1 to score
+    score++;
+    scoreDisplay.textContent = `Current Score: ${score}`; // Displays updated score;
+    feedbackElement.textContent = "Correct! :D";
+  } else {
+    // If incorrect, feedback renders incorrect and deducts 10 seconds from timer
+    timeLeft = Math.max(timeLeft - 10, 0);
+    timerCount.textContent = `Timer: ${timeLeft}`;
+  }
+  // Shows feedback to user if the question was correct/incorrect and is set for 1 second.
+  showElement(feedbackElement);
+  setTimeout(() => {
+    hideElement(feedbackElement);
+    if (currentQuestionIndex < quizQuestions.length - 1) {
+      currentQuestionIndex++;
+      nextQuestion();
+    } else {
+      endGame();
+    }
+  }, 1000);
+}
+//Timer function to show time left
+function startTimer() {
+  clearInterval(timerInterval);
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    timerCount.textContent = `Timer: ${timeLeft}`;
+
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      endGame();
+    }
+  }, 1000);
+}
+//At the end of the quiz, elements are again hidden and displayed
+function endGame() {
+  clearInterval(timerInterval);
+  answerBtns.innerHTML = "";
+  hideElement(questionElement);
+  hideElement(answerBtns);
+  hideElement(timerCount);
+  hideElement(scoreDisplay);
+  hideElement(feedbackElement);
+  showElement(initialsInput);
+  showElement(saveScoreButton);
+}
+//Function to save score to local storage with initials (Limited to 2 characters)
+function saveScore() {
+  const initials = initialsInput.value;
+  if (!initials || initials.length !== 2) {
+    alert("Please enter your initials(2 characters).");
+    return;
+  }
+
+  const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+  highScores.push({ score, initials });
+  localStorage.setItem("highScores", JSON.stringify(highScores));
+
+  // Hide the input field and button after saving, notify user the score is saved and redirect to high score page.
+  hideElement(initialsInput);
+  hideElement(saveScoreButton);
+  feedbackElement.textContent = "Score saved!";
+  showElement(feedbackElement);
+
+  setTimeout(() => {
+    window.location.href = "./highScores.html";
+  }, 2000);
+}
+
+// Event listeners
+startButton.addEventListener("click", startGame);
+saveScoreButton.addEventListener("click", saveScore);
+
+initializeQuiz();

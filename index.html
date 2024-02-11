@@ -1,63 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+    />
     <link rel="stylesheet" type="text/css" href="./assets/style.css" />
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet"> 
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap"
+      rel="stylesheet"
+    />
 
     <title>Javascript Quiz - Test Your Knowledge!</title>
-</head>
-<body class="backgroundBox">
-    
-    <header class="d-flex p-2 mb-3 bg-success bg-gradient rounded">
-        <div class="p-3 bg-body rounded ">
-            <a href="#" class="link-success">High Scores</a> <!-- Link to the high scores-->
+  </head>
+  <body>
+    <header
+      class="header d-flex p-2 mb-3 bg-success bg-gradient rounded"
+    ></header>
+    <div class="container">
+      <div class="row">
+        <div class="d-flex justify-content-between">
+          <!-- Score -->
+          <div class="p-3 bg-body rounded" id="currentScore">
+            <h3 class="p-3 bg-body rounded fw-bold">
+              <span
+                class="p-3 bg-body rounded fw-bold"
+                id="scoreDisplay"
+              ></span>
+            </h3>
+          </div>
+          <!-- Timer -->
+          <div
+            class="timer p-3 bg-body rounded d-flex justify-content-end"
+            id="timer"
+          >
+            <h3 class="p-4 fs-3 fw-bold" id="timerCount">Timer</h3>
+          </div>
         </div>
-
-    </header>
-    <div class="timer p-3 bg-body rounded d-flex justify-content-end" id="timer">
-        <h3 class="timerDec">The Timer</h3>
-        <!-- Place timer here to display on top right side of page -->
+      </div>
     </div>
 
-    <!--Body that hosts the heading and buttons  -->
-    <section class="quizHeader d-flex justify-content-center">
-        <h1 class="jsqHeader text-center fs-1 fw-bold border-bottom">Javascript Quiz - Test your Knowledge!</h1>
-    </section>
-
-    <section class="btnSwitch d-flex justify-content-center btn-lg p-"> <!--Begin Test Button-->
-        <div class="startTest" id="startTest">
-            <button class="startBtn rounded btn-danger" id="beginBtn" data-state="show">BEGIN TEST!</button>
+    <section id="quizContainer" class="container pb-3">
+      <div class="quiz-header d-flex justify-content-center">
+        <h1
+          class="jsq-header text-center fs-1 fw-bold pb-3 mt-3 mb-3 border-bottom"
+        >
+          Javascript Quiz - Test your Knowledge!
+        </h1>
+      </div>
+      <!-- Begin Test Button -->
+      <div class="btn-switch d-flex justify-content-center">
+        <div class="start-test" id="start-test">
+          <button class="beginButton rounded btn-danger" id="beginBtn">
+            BEGIN TEST!
+          </button>
         </div>
-    </section>
+      </div>
+      <!-- Section for dynamic questions/answers -->
+      <div class="question-box">
+        <h2 id="question" class="text-center fs-1 fw-bold pb-2"></h2>
+      </div>
 
-    <section class="questionBox">
-        <div class=""></div>
-            <h2 id="question" class="text-center fs-1 fw-bold pb-2"></h2>
-        </div>
+      <div
+        class="new-answers all-btns align-content-center d-grid gap-2 col-6 mx-auto"
+        id="answerBtns"
+      ></div>
     </section>
-
-    
-    <div class="newAnswers allBtns  align-content-center d-grid gap-2 col-6 mx-auto" id="answerBtns">
-        <!-- <button id="btn1" class="answers btn btn-success bg-gradient btn-lg">------</button>
-        <button id="btn2" class="answers btn btn-success bg-gradient btn-lg">------</button>
-        <button id="btn3" class="answers btn btn-success bg-gradient btn-lg">------</button>
-        <button id="btn4" class="answers btn btn-success bg-gradient btn-lg">------</button> -->
-    </div>
+    <!-- Feedback notifying if answer was correct/incorrect -->
+    <section class="Feedback">
+      <p class="text-center mt-2 fw-bold fs-2" id="feedback"></p>
     </section>
-
-    <section class="correct">
-
+    <!-- Section for inputting initials and saving high scores -->
+    <section class="highScores text-center" id="highScores">
+      <div class="container d-flex justify-content-center">
+        <input
+          class="justify-content-center"
+          type="text"
+          id="initialsInput"
+          placeholder="Enter your initials"
+        />
+        <button id="saveScore" class="btn btn-danger justify-content-center">
+          Save Score
+        </button>
+        <button id="backButton" class="btn btn-danger justify-content-center">
+          Back to Quiz
+        </button>
+      </div>
     </section>
-    <footer class="footer">
-        
+    <!-- Footer -->
+    <footer class="bg-success bg-gradient" id="footer">
+      <a href="highScores.html" class="">View High Scores</a>
     </footer>
+
+    <script src="./assets/questions.js"></script>
     <script src="./assets/script.js"></script>
-</body>
+  </body>
 </html>

@@ -1,132 +1,40 @@
- * {
-    font-family: 'Indie Flower', cursive;
+* {
+  font-family: "Indie Flower", cursive;
 }
 
-/*
-.score {
-    width: 100%;
-    background-color: black;
+.beginButton {
+  height: 100px;
+  width: 200px;
+  font-size: 30px;
+  margin: 100px;
 }
 
-.score a {
-    position: relative;
-    top: 15px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    flex-wrap: wrap;
-    font-size: 20px;
-}
-.timer {
-    flex-wrap: wrap;
-    height: 65px;
-    border: 2px solid black;
-    width: 100px;
-    text-align: center;
+header {
+  height: 50px;
 }
 
-.timerDec {
-    font-weight: bold;
-    position: relative;
-    top: 20px;
+footer {
+  height: 60px;
+  margin-top: 50px;
+  padding: 10px 0;
+  color: white;
+  text-align: center;
+}
+.hidden {
+  display: none;
 }
 
-.quizBox {
-    display: flex;
-    position: relative;
-    padding: 10px 10px 10px 10px;
-    flex-direction: column;
-    flex: 1 2 1;
-    text-align: center;
-    margin-left: 15%;
-    margin-right: 15%;
-    margin-top: -2px;
-    margin-bottom: 10%;
-    border: 2px solid black;
-    height: 500px;
+.visible {
+  display: block;
+}
+.list-group-item {
+  font-size: 1.2em;
+  border: 1px solid #ccc;
+  margin-bottom: 5px;
 }
 
-.question {
-    font-size: 18px;
-    text-align: center;
-    flex: 1 2 1;
-    position: relative;
-    flex-wrap: wrap;
-    bottom: 60px;
+a {
+  text-decoration: none;
+  color: white;
+  font-size: 26px;
 }
-
-.jsqHeader {
-    position: relative;
-    bottom: 20px;
-    text-shadow: 1px 1px 0px orangered;
-    padding: 10px 0px 10px 0px;
-    flex: 1 2 1;
-    border-bottom: 2px solid black;
-    text-align: center; */
-    /* flex-direction: column;
-    flex: 1 2 1;
-    font-size: 36px;
-    text-align: center;
-    margin-left: 15%;
-    margin-right: 10%;
-    margin-top: -2px;
-    margin-bottom: 10%;
-    border: 2px solid black;
-    height: 400px; */
-/* }
-
-.allBtns {
-    display: flex;
-    flex-direction: column;
-    
-}
-
-#beginBtn {
-    border-radius: 15px;
-    position: absolute;
-    height: 80px;
-    width: 348px;
-    left: 140px;
-    bottom: 183px;
-    background-color: green;
-    font-size: 26px;
-    font-weight: bold;
-}
-
-.btn {
-    position: relative;
-    flex-wrap: wrap;
-    flex: 1 2 1;
-    left: 120px;
-    padding: 15px;
-    justify-content: center;
-    text-align: center;
-    background-color: orangered;
-    border-radius: 15px;
-    margin: 10px;
-    width: 50%;
-    height: 90%;
-    box-shadow: 2px 3px gray;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.btn:hover {
-    background-color: yellow;
-    color: black;
-}
-
-.correct{
-    border-top: 2px solid black;
-    margin-top: 30px;
-    padding: 20px;
-}
-
-.footer {
-    position: relative;
-    top: 50px;
-    background-color: black;
-    height: 80px;
-    width: 100%;
-} */
-button[data-state="hidden"] {
-    display: none
-};
