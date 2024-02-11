@@ -14,11 +14,11 @@ To use this web app, all you need to do is access the URL and click the "Begin T
 
 ## Contributors
 
-No other contributors for this project
+No other contributors for this project.
 
 ## License
 
-This project is licensed under the MIT license.
+This project does not have a license.
 
 ## Questions
 
